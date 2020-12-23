@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sushikitchen.R
 import com.example.sushikitchen.adapters.OrderAdapter
+import com.example.sushikitchen.fragments.OrderDialogFragment
 import com.example.sushikitchen.models.OrderModel
 
 class OrderActivity : AppCompatActivity() {
@@ -16,6 +19,7 @@ class OrderActivity : AppCompatActivity() {
     lateinit var rvOrder : RecyclerView
     lateinit var orderAdapter : OrderAdapter
     private  var orderModel : ArrayList<OrderModel> = ArrayList()
+    private lateinit var orderDialogFragment: OrderDialogFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +39,7 @@ class OrderActivity : AppCompatActivity() {
         orderModel.add(ff)
 
         setupAdapter(orderModel)
+//        openOrderDialog()
 
     }
 
@@ -45,9 +50,6 @@ class OrderActivity : AppCompatActivity() {
     fun btnQuit(view: View) {
         openQuitDialog()
     }
-    fun btnNewOrder(view: View) {}
-    fun btnCookOrder(view: View) {}
-    fun btnDoneOrder(view: View) {}
 
     override fun onBackPressed() {
 //        super.onBackPressed()
@@ -68,5 +70,16 @@ class OrderActivity : AppCompatActivity() {
         quitDialog.setNegativeButton("Ой, нет!"
         ) { dialog, which -> }
         quitDialog.show()
+    }
+
+    private fun openOrderDialog() {
+        rvOrder.setOnClickListener {
+            orderDialogFragment = OrderDialogFragment()
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.frame_layout, orderDialogFragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit()
+        }
     }
 }

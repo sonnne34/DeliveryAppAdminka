@@ -12,7 +12,7 @@ class OrderDialogAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var mOrderDialogList: ArrayList<OrderModel> = ArrayList()
 
-    fun setupOrder(orderDialogList: ArrayList<OrderModel>){
+    fun setupDialogOrder(orderDialogList: ArrayList<OrderModel>){
         mOrderDialogList.clear()
         mOrderDialogList.addAll(orderDialogList)
         notifyDataSetChanged()

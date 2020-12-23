@@ -40,7 +40,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="5dp"
-            android:onClick="btnNewOrder"
             android:text="Новые"/>
 
         <Button
@@ -49,7 +48,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="5dp"
-            android:onClick="btnCookOrder"
             android:text="В работе"/>
 
         <Button
@@ -58,7 +56,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="5dp"
-            android:onClick="btnDoneOrder"
             android:text="Отданы"/>
 
     </LinearLayout>
@@ -68,5 +65,12 @@
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:background="#123456"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
