@@ -5,21 +5,17 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sushikitchen.R
 import com.example.sushikitchen.adapters.OrderAdapter
-import com.example.sushikitchen.fragments.OrderDialogFragment
-import com.example.sushikitchen.models.OrderModel
+import com.example.sushikitchen.models.StatusOrderModel
 
 class OrderActivity : AppCompatActivity() {
 
     lateinit var rvOrder : RecyclerView
     lateinit var orderAdapter : OrderAdapter
-    private  var orderModel : ArrayList<OrderModel> = ArrayList()
-    private lateinit var orderDialogFragment: OrderDialogFragment
+    private  var statusOrderModel : ArrayList<StatusOrderModel> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,19 +27,15 @@ class OrderActivity : AppCompatActivity() {
         rvOrder.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
         rvOrder.setHasFixedSize(true)
 
-        var or = OrderModel()
-        or.order = "1"
-        var ff = OrderModel()
-        ff.order = "2"
-        orderModel.add(or)
-        orderModel.add(ff)
+        var or = StatusOrderModel()
+        or.Items?.order  = "1"
+        statusOrderModel.add(or)
 
-        setupAdapter(orderModel)
-//        openOrderDialog()
+        setupAdapter(statusOrderModel)
 
     }
 
-    private fun setupAdapter(modelList : ArrayList<OrderModel> ) {
+    private fun setupAdapter(modelList : ArrayList<StatusOrderModel> ) {
         orderAdapter.setupOrder(orderList = modelList)
     }
 
@@ -72,14 +64,4 @@ class OrderActivity : AppCompatActivity() {
         quitDialog.show()
     }
 
-    private fun openOrderDialog() {
-        rvOrder.setOnClickListener {
-            orderDialogFragment = OrderDialogFragment()
-            supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.frame_layout, orderDialogFragment)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .commit()
-        }
-    }
 }
