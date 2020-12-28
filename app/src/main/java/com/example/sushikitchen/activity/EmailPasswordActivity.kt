@@ -1,8 +1,10 @@
 package com.example.sushikitchen.activity
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -10,6 +12,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sushikitchen.R
+import com.example.sushikitchen.singleton.LoginSingleton
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -21,6 +24,10 @@ class EmailPasswordActivity : AppCompatActivity() {
     lateinit var txtPassword: EditText
     lateinit var btnLogin: Button
     lateinit var pbLoading: ProgressBar
+
+    private final val LOGIN = "LOGIN"
+    lateinit var sLogin: SharedPreferences
+    var saveTextLogin: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,12 +41,17 @@ class EmailPasswordActivity : AppCompatActivity() {
         btnLogin = findViewById(R.id.login)
         pbLoading = findViewById(R.id.loading)
 
+        val login: String = txtUserName.text.toString()
+        saveTextLogin(login)
+        LoginSingleton.addLogin(login)
+
+        loadTextPerson()
         loginUserAccount()
 
     }
 
 
-    fun loginUserAccount() {
+    private fun loginUserAccount() {
         // слушаем кнопочку "вход"
         btnLogin.setOnClickListener {
 
@@ -99,6 +111,21 @@ class EmailPasswordActivity : AppCompatActivity() {
                     }
                 }
         }
+    }
+
+    private fun saveTextLogin(login: String) {
+        sLogin = getPreferences(MODE_PRIVATE)
+        val ph: SharedPreferences.Editor = sLogin.edit()
+        ph.putString(LOGIN, login).toString()
+        ph.commit()
+
+//        Log.d("ggg", "ggg" + )
+    }
+
+    private fun loadTextPerson() {
+        sLogin = getPreferences(MODE_PRIVATE)
+        saveTextLogin = sLogin.getString(LOGIN, "")
+        txtUserName.setText(saveTextLogin)
     }
 
 }
