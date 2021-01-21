@@ -43,7 +43,7 @@ class OrderAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         fun bind (statusOrderModel: StatusOrderModel){
             order.text = "${statusOrderModel.Items?.order}"
-            time.text = "${statusOrderModel.Items?.timeOrder}"
+//            time.text = "${statusOrderModel.Items?.timeOrder}"
 
             itemView.setOnClickListener {
 //                OrderDialog.openDialog(itemView.context, statusOrderModel )

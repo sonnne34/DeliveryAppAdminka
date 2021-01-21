@@ -41,8 +41,8 @@ class OrderDialogAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private var amount : TextView = itemView.findViewById(R.id.txt_amount_order_dialog)
 
         fun bind (statusOrderModel: StatusOrderModel){
-            dish.text = "${statusOrderModel.Items?.dish}"
-            amount.text = "${statusOrderModel.Items?.amount}"
+//            dish.text = "${statusOrderModel.Items?.dish}"
+//            amount.text = "${statusOrderModel.Items?.amount}"
 
 
         }
