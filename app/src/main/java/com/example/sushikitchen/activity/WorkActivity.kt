@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sushikitchen.R
 import com.example.sushikitchen.adapters.OrderWorkAdapter
+import com.example.sushikitchen.models.OrderModel
+import com.example.sushikitchen.singleton.OrderSingleton
 
 class WorkActivity : AppCompatActivity()  {
 
@@ -21,12 +23,12 @@ class WorkActivity : AppCompatActivity()  {
         recyclerView.adapter = orderWorkAdapter
         recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         recyclerView.setHasFixedSize(true)
-//        var list = ItemSingleton.item
+        var list = OrderSingleton.basketItem
 
-//        update(list)
+        update(list)
     }
 
-//    private fun update(list : ArrayList<OrderModel>) {
-//        orderWorkAdapter.setupWorkOrder(list)
-//    }
+    private fun update(list : ArrayList<OrderModel>) {
+        orderWorkAdapter.setupWorkOrder(list)
+    }
 }

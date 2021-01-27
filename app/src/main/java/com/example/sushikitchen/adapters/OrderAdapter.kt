@@ -4,15 +4,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sushikitchen.R
+import com.example.sushikitchen.dialog.addDialog
+import com.example.sushikitchen.models.OrderModel
 import com.example.sushikitchen.models.StatusOrderModel
 
 class OrderAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var mOrderList: ArrayList<StatusOrderModel> = ArrayList()
+    private var mOrderList: ArrayList<OrderModel> = ArrayList()
 
-    fun setupOrder(orderList: ArrayList<StatusOrderModel>){
+    fun setupOrder(orderList: ArrayList<OrderModel>){
         mOrderList.clear()
         mOrderList.addAll(orderList)
         notifyDataSetChanged()
@@ -39,12 +42,14 @@ class OrderAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private var order : TextView = itemView.findViewById(R.id.txt_number_item)
         private var time : TextView = itemView.findViewById(R.id.txt_time_item)
 
-        fun bind (statusOrderModel: StatusOrderModel){
-            order.text = "${statusOrderModel.Items?.order}"
-//            time.text = "${statusOrderModel.Items?.timeOrder}"
+        fun bind (statusOrderModel: OrderModel){
+
+            time.text = "${statusOrderModel.os}"
 
             itemView.setOnClickListener {
 
+
+                addDialog.openAddressDialog(itemView.context, statusOrderModel)
 
             }
         }

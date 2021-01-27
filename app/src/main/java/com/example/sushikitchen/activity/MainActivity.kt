@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var rvOrder : RecyclerView
     lateinit var orderAdapter : OrderAdapter
-    private  var statusOrderModel : ArrayList<StatusOrderModel> = ArrayList()
+    private  var list : ArrayList<OrderModel> = ArrayList()
     private lateinit var btnNew : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        setupAdapter(statusOrderModel)
+
 
 
         loaddata()
@@ -55,9 +55,7 @@ class MainActivity : AppCompatActivity() {
 
         btnNew.setOnClickListener{
 
-            Toast.makeText(applicationContext,"Выполнен",Toast.LENGTH_LONG).show()
 
-            addDialog.openAddressDialog(this)
         }
 
 
@@ -88,9 +86,9 @@ class MainActivity : AppCompatActivity() {
                     val value = ds.getValue(OrderModel::class.java)!!
 
                     Log.d("AA", "value = " + value.os )
+                    list.add(value)
 
-
-
+                    updateAdapter(list)
                 }
 
 
@@ -107,9 +105,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun setupAdapter(modelList : ArrayList<StatusOrderModel> ) {
+    private fun updateAdapter(modelList : ArrayList<OrderModel> ) {
         orderAdapter.setupOrder(orderList = modelList)
     }
+
+
 
     fun btnQuit(view: View) {
         openQuitDialog()

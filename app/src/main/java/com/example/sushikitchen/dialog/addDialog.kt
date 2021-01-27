@@ -3,16 +3,20 @@ package com.example.sushikitchen.dialog
 import android.app.Dialog
 import android.widget.ListPopupWindow
 import android.content.Context
+import android.content.Intent
 import android.view.Gravity
 import android.view.Window
 import android.widget.Button
 import com.example.sushikitchen.R
+import com.example.sushikitchen.activity.WorkActivity
 import com.example.sushikitchen.models.OrderModel
+import com.example.sushikitchen.models.StatusOrderModel
+import com.example.sushikitchen.singleton.OrderSingleton
 
 
 class addDialog {
     companion object{
-        fun openAddressDialog(context : Context){
+        fun openAddressDialog(context : Context, status : OrderModel){
 
 
             val dialog = Dialog(context, R.style.CustomDialog)
@@ -31,11 +35,12 @@ class addDialog {
 
             btnYES.setOnClickListener {
 
-//                ItemSingleton.addItems(item)
-//
-//                ItemSingleton.show()
-//                val intent = Intent(context, WorkActivity::class.java)
-//                context.startActivity(intent)
+
+                OrderSingleton.addBasketItem(status)
+
+                OrderSingleton.showBasket()
+                val intent = Intent(context, WorkActivity::class.java)
+                context.startActivity(intent)
 
 
                 dialog.cancel()
