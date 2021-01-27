@@ -3,6 +3,7 @@
     package="com.example.sushikitchen">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="true"
@@ -12,10 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SushiKitchen">
         <activity
+            android:name=".activity.WorkActivity"
+            android:label="@string/title_activity_work"
+            android:theme="@style/Theme.SushiKitchen.NoActionBar"></activity>
+        <activity
             android:name=".activity.DialogOrderActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MainActivity"
             android:screenOrientation="portrait" />

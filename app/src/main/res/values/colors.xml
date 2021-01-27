@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+
+    <color name="gray_mercury">#E1E1E1</color>
+    <color name="colorUltramarine">#1d334a</color>
+    <color name="colorSalmon">#f5d4c9</color>
 </resources>

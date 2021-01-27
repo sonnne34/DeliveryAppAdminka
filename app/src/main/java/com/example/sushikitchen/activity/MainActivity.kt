@@ -1,24 +1,26 @@
 package com.example.sushikitchen.activity
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sushikitchen.R
 import com.example.sushikitchen.adapters.OrderAdapter
+import com.example.sushikitchen.dialog.addDialog
 import com.example.sushikitchen.models.OrderModel
 import com.example.sushikitchen.models.StatusOrderModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
 
 import java.util.*
 import kotlin.collections.ArrayList
@@ -28,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var rvOrder : RecyclerView
     lateinit var orderAdapter : OrderAdapter
     private  var statusOrderModel : ArrayList<StatusOrderModel> = ArrayList()
+    private lateinit var btnNew : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,14 +42,27 @@ class MainActivity : AppCompatActivity() {
         rvOrder.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
         rvOrder.setHasFixedSize(true)
 
-//        var or = StatusOrderModel()
-//        or.Items?.order  = "1"
-//        statusOrderModel.add(or)
+
 
         setupAdapter(statusOrderModel)
 
 
         loaddata()
+
+        btnNew = findViewById(R.id.btn_new_order)
+
+        var context : Context
+
+        btnNew.setOnClickListener{
+
+            Toast.makeText(applicationContext,"Выполнен",Toast.LENGTH_LONG).show()
+
+            addDialog.openAddressDialog(this)
+        }
+
+
+
+
 
     }
 
